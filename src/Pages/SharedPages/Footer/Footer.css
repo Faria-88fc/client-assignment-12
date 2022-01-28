@@ -1,0 +1,29 @@
+.footer{
+    background-color: #58463f;
+    color: white;
+    padding-bottom: 10px;
+}
+.footer h3{
+    text-align: center;
+    height: 110px;
+    padding-top: 80px;
+
+}
+.footer-infos{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    margin-top: 40px;
+    padding: 20px;
+    color: white;
+}
+.footer-info:hover{
+    text-decoration: underline;
+    cursor: pointer;
+    color:rgb(21, 190, 120);
+}
+.footerp {
+    /* text-align: center; */
+    margin-top: 80px;
+    font-weight: bold;
+}
+

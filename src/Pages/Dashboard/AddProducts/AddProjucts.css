@@ -1,0 +1,35 @@
+
+.pruduct-form{
+    margin-top: 80px;
+    color: rgb(56, 18, 18);
+    margin-bottom: 40px;
+}
+.pruduct-form h2{
+    text-align: center;
+}
+
+.pruduct-form form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.pruduct-form form input, textarea{
+    width: 40%;
+    margin: 10px;
+    padding: 8px;
+    border-radius: 8px;
+}
+.submit{
+    background-color: #5d4037;
+    border-radius: 5px;
+    padding: 10px 15px;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+.des{
+    border: 2px solid black;
+}
