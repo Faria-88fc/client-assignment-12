@@ -3,8 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
-import useFirebase from '../../../hooks/useFirebase';
 import './Purchase.css'
+import useAuth from '../../../hooks/useAuth';
 
 
 const Purchase = () => {
@@ -13,16 +13,16 @@ const Purchase = () => {
     const [products, setProducts] = useState([]);
     const [product, setProduct] = useState([]);
     const [singleProduct, setSingleProduct] = useState({});
-    const { user } = useFirebase();
+    const { user } = useAuth();
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://desolate-scrubland-90880.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
 
     }, []);
     useEffect(() => {
-        fetch('http://localhost:5000/allproducts')
+        fetch('https://desolate-scrubland-90880.herokuapp.com/allproducts')
             .then(res => res.json())
             .then(data => setProduct(data))
 
@@ -36,7 +36,7 @@ const Purchase = () => {
         const pdDetail = product.find(pd => (pd?.id) === _id)
         setSingleProduct(pdDetail);
 
-    }, [products, _id,product]);
+    }, [products, _id, product]);
 
 
     const { register, handleSubmit, reset } = useForm();
@@ -47,7 +47,7 @@ const Purchase = () => {
         data.pdprice = singleProduct?.description;
         data.pdprice = singleProduct?.price;
         data.status = "pending";
-        axios.post('http://localhost:5000/orders', data)
+        axios.post('https://desolate-scrubland-90880.herokuapp.com/orders', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('your order taken successfully');
@@ -65,8 +65,8 @@ const Purchase = () => {
                         <h5 className="card-title">{singleProduct?.name}</h5>
                         <p className="card-text">{singleProduct?.description}</p>
                         <h5 className='text-danger'><span className='fw-bold fs-3'>BDT  </span>
-                           {singleProduct?.price}</h5>
-                        <Link  to='/home'style={{backgroundColor:"#5d4037",padding:"8px 35px", borderRadius:"8px",color:"white",textDecoration:"none",marginTop:"20px"}}>Back</Link>
+                            {singleProduct?.price}</h5>
+                        <Link to='/home' style={{ backgroundColor: "#5d4037", padding: "8px 35px", borderRadius: "8px", color: "white", textDecoration: "none", marginTop: "20px" }}>Back</Link>
                     </div>
                 </div>
 
@@ -74,10 +74,10 @@ const Purchase = () => {
                     <h4 className='fw-bold mt-3 h'>Want to Purchase? Place Your Order</h4>
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
-                            <input {...register("name", { required: true, maxLength: 20 })} placeholder='Your Name' />
+                            <input {...register("name", { required: true, maxLength: 20 })} defaultValue={user?.displayName} />
                             <input {...register("address", { required: true })} placeholder='Your Address' />
                             <input type='number' {...register("phone_number")} placeholder='Contact Number' />
-                            
+
 
                             <input className='submit' type="submit" value='Place Order' />
                         </form>

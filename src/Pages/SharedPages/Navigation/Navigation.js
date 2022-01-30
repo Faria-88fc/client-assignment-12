@@ -17,13 +17,15 @@ const Navigation = () => {
                 <Toolbar>
                     <Typography variant="h5" component="div" sx={{ flexGrow: 1 }}>Jhamdani Creation</Typography>
                     <MenuItem></MenuItem>
+
                     <Link style={{ marginRight: '30px', textDecoration: 'none', color: "white" }} to='/home'><h5
                     >Home</h5>
                     </Link>
-                    <Link style ={{marginRight:'30px',textDecoration:'none',color:"white"}}  to= '/dashboard'><h5
+
+                    {user?.email && <Link style={{ marginRight: '30px', textDecoration: 'none', color: "white" }} to='/dashboard'><h5
                     >Dashboard</h5>
-                   </Link>
- 
+                    </Link>}
+
                     {user.email ?
                         <Button onClick={logout} color="inherit">LogOut</Button> :
                         <Link style=

@@ -1,26 +1,39 @@
 import React from 'react';
 import useAuth from '../../../hooks/useAuth';
-// import { Link, useLocation, useHistory } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
 
 const LogIn = () => {
-    const { emailPasswordSignIn, signInWithGoogle, error, handlePassword, handleEmail } = useAuth();
-    // const location = useLocation();
-    // const history = useHistory();
-    // const redirect_url = location.state?.from || '/home'
+    const { emailPasswordSignIn, signInWithGoogle, error, isLoading } = useAuth();
+
+    const navigate = useNavigate();
+
     const handleGoogleLogin = () => {
         signInWithGoogle()
             .then(result => {
-                // history.push(redirect_url);
 
-
+                navigate('/home');
             })
 
     }
 
-//     import {useNavigate} from 'react-router-dom';
-// const navigate = useNavigate();
-// navigate('/home')
+    const [loginData, setLoginData] = useState({});
+
+    const onChangeHandle = e => {
+        const field = e.target.name;
+        const value = e.target.value;
+        const newLoginData = { ...loginData };
+        newLoginData[field] = value;
+        setLoginData(newLoginData);
+    }
+
+    const handleLoginSubmit = e => {
+        e.preventDefault();
+        emailPasswordSignIn(loginData.email, loginData.password);
+        navigate('/home')
+
+    }
 
 
 
@@ -30,16 +43,20 @@ const LogIn = () => {
                 <img className='w-100' src="../../../../images/log.jpg" alt="" />
             </div>
             <div className='d-flex justify-content-center align-items-center flex-column   mt-5' style={{ boxShadow: "2px 2px 2px 2px", marginBottom: "80px", padding: " 0 100px ", border: "none" }}>
-                <form>
+                {!isLoading && <form onSubmit={handleLoginSubmit} >
                     <h3 className='my-4 text-gray fst-italic fw-bold'>Jhamdhani Creation</h3>
-                    <input onBlur={handleEmail} type="email" name="" className='form-control w-100' placeholder="your email" required id="" />
+                    <input onChange={onChangeHandle} type="email" name="email" className='form-control w-100' placeholder="your email" required id="" />
                     <br />
                     <div className='text-warning'>{error}</div>
                     <br />
-                    <input onBlur={handlePassword} type="password" name="" id="" className='form-control w-100' required placeholder='password' />
+                    <input onChange={onChangeHandle} type="password" name="password" id="" className='form-control w-100' required placeholder='password' />
                     <br />
-                    <input onClick={emailPasswordSignIn} type="button" className='form-control w-100 text-white fs-5' style={{ backgroundColor: "#5d4037" }} value="Sign In" />
-                </form>
+                    <button type="submit" className='form-control w-100 text-white fs-5' style={{ backgroundColor: "#5d4037" }}>SignIn</button>
+                </form>}
+                {isLoading && <div className="spinner-border" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>}
+
                 <div className='my-3 text-gray fw-bold ps-5 fs-3 '>---- OR ----</div>
                 <button onClick={handleGoogleLogin} className='ms-4' > SignIn with Google</button>
 

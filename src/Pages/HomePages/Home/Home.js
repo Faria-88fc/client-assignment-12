@@ -14,7 +14,7 @@ const Home = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://desolate-scrubland-90880.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setProducts(data))
 
@@ -26,19 +26,19 @@ const Home = () => {
             <Banner></Banner>
 
 
-            <h2 className='text-center pb-4 m-4 text-warning fw-bold'>LATEST ARRIVAL</h2>
+            <h2 className='text-center pb-4 m-4 fw-bold' style={{ color: '#EA548C' }}>LATEST ARRIVAL</h2>
             <Box sx={{ flexGrow: 1 }}>
                 <Container>
                     <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
-                        
+
                         {
                             products.map(pd => <Product key={pd._id} pd={pd}></Product>)
                         }
                     </Grid>
                 </Container>
             </Box>
-           <About></About>
-          <Reviews></Reviews>
+            <About></About>
+            <Reviews></Reviews>
         </div>
 
     );

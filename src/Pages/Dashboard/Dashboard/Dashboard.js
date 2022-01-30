@@ -1,19 +1,19 @@
-import { AppBar, Box, Toolbar } from '@mui/material';
+import { AppBar, Box, Button, Toolbar } from '@mui/material';
 import React from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 
 const Dashboard = () => {
-    const { user } = useAuth();
+    const { admin, logout, user } = useAuth();
     return (
         <div>
             <Box sx={{ flexGrow: 1, }}>
-                <AppBar  position="static"  style={{ backgroundColor: 'white', boxShadow: '0 0 0 0', paddingBottom:'100px' }}>
+                <AppBar position="static" style={{ backgroundColor: 'white', boxShadow: '0 0 0 0', paddingBottom: '100px' }}>
                     <Toolbar>
 
                         {
-                            user.email ? <ul className='d-flex flex-sm-wrap'> <Link style={{ marginRight: '20px', textDecoration: 'none', color: "#5d4037" }} to='admin'><h5
+                            admin ? <ul className='d-flex flex-sm-wrap '> <Link style={{ marginRight: '20px', textDecoration: 'none', color: "#5d4037" }} to='admin'><h5
                             >make admin</h5>
                             </Link>
 
@@ -31,6 +31,7 @@ const Dashboard = () => {
                                 <Link style={{ marginRight: '30px', textDecoration: 'none', color: "#5d4037" }} to='manageorders'><h5
                                 >manage all orders</h5>
                                 </Link>
+                                {user?.email && <Button style={{ marginRight: '30px', textDecoration: 'none', color: "#5d4037" }} onClick={logout} color="inherit">LogOut</Button>}
 
                             </ul> :
 
@@ -44,6 +45,7 @@ const Dashboard = () => {
                                     <Link style={{ marginRight: '30px', textDecoration: 'none', color: "#5d4037" }} to='review'><h5
                                     >give review</h5>
                                     </Link>
+                                    {user?.email && <Button style={{ marginRight: '30px', textDecoration: 'none', color: "#5d4037" }} onClick={logout} color="inherit">LogOut</Button>}
 
                                 </ul>
 

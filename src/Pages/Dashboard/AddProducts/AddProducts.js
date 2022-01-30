@@ -7,7 +7,7 @@ import './AddProjucts.css'
 const AddProducts = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
-        axios.post('http://localhost:5000/allproducts', data)
+        axios.post('https://desolate-scrubland-90880.herokuapp.com/allproducts', data)
             .then(res => {
                 if (res.data.insertedId) {
                     alert('Product added successfully');

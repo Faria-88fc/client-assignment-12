@@ -13,7 +13,7 @@ import Dashboard from './Pages/Dashboard/Dashboard/Dashboard';
 import Purchase from './Pages/Dashboard/Purchase/Purchase';
 import AllProducts from './Pages/Dashboard/AllProducts/AllProducts';
 import ManageProducts from './Pages/Dashboard/ManageProducts/ManageProducts';
-// import PrivateRoute from './Pages/SharedPages/PrivateRoute/PrivateRoute';
+import PrivateRoute from './Pages/SharedPages/PrivateRoute/PrivateRoute';
 import AddReview from './Pages/Dashboard/AddReview/AddReview';
 import AddProducts from './Pages/Dashboard/AddProducts/AddProducts';
 import ManageOrders from './Pages/Dashboard/ManageOrders/ManageOrders';
@@ -29,20 +29,20 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='home' element={<Home />} />
-          <Route path='pd/:_id' element={<Purchase />} />
+          <Route path='pd/:_id' element={<PrivateRoute><Purchase /></PrivateRoute>} />
           <Route path='login' element={<LogIn />} />
           <Route path='register' element={<Register />} />
           <Route path='dashboard' element={<Dashboard />}>
             <Route path='manageproducts' element={<ManageProducts />} />
-            <Route  path='admin' element={<AddAdmin />} />
-            <Route  path='addproducts' element={<AddProducts />} />
-            <Route  path='manageorders' element={<ManageOrders />} />
-            <Route  path='review' element={<AddReview />} />
-            <Route  path='myorder' element={<MyOrder />} />
-            <Route  path='pay' element={<Pay />} />
+            <Route path='admin' element={<AddAdmin />} />
+            <Route path='addproducts' element={<AddProducts />} />
+            <Route path='manageorders' element={<ManageOrders />} />
+            <Route path='review' element={<AddReview />} />
+            <Route path='myorder' element={<MyOrder />} />
+            <Route path='pay' element={<Pay />} />
           </Route>
-          <Route  path='allproducts' element={<AllProducts />} />
-          <Route  path='*' element={<PageNotFound />} />
+          <Route path='allproducts' element={<AllProducts />} />
+          <Route path='*' element={<PageNotFound />} />
         </Routes>
         <Footer></Footer>
       </BrowserRouter>
@@ -52,34 +52,3 @@ function App() {
 
 export default App;
 
-
-// <Route path='/home'>
-// <Home></Home>
-// </Route>
-// <PrivateRoute path='/pd/:_id'>
-// <Purchase></Purchase>
-// </PrivateRoute>
-// <Route path='/login'>
-// <LogIn></LogIn>
-// </Route>
-// <Route path='/register'>
-// <Register></Register>
-// </Route>
-// <Route path='/pay'>
-// <Pay></pay>
-// </Route>
-// <Route path='/dashboard'>
-// <Dashboard></Dashboard>
-// </Route>
-// <Route path='/allproducts'>
-// <AllProducts></AllProducts>
-// </Route>
-// <Route path='/manageproducts'>
-// <ManageProducts></ManageProducts>
-// </Route>
-// <Route path='/review'>
-// <AddReview></AddReview>
-// </Route>
-// <Route path='*'>
-// <PageNotFound></PageNotFound>
-// </Route>

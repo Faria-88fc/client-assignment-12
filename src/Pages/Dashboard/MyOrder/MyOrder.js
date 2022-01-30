@@ -8,7 +8,7 @@ const MyOrder = () => {
     const [control, setControl] = useState(false)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders/${email}`)
+        fetch(`https://desolate-scrubland-90880.herokuapp.com/orders/${email}`)
             .then((res) => res.json())
             .then((data) => setMyorders(data));
 
@@ -18,7 +18,7 @@ const MyOrder = () => {
     const handleDelete = (id) => {
         if (id) { (window.confirm('want to remove this product?')) };
 
-        fetch(`http://localhost:5000/deleteorders/${id}`, {
+        fetch(`https://desolate-scrubland-90880.herokuapp.com/deleteorders/${id}`, {
             method: "DELETE",
         })
             .then(res => res.json())
@@ -36,7 +36,7 @@ const MyOrder = () => {
 
                         <div className='col-md-3 g-4 m-3'>
                             <div>
-                                <p className='text-warning fw-bold'>Booking Status: {mo?.status}</p>
+                                <p className='text-primary fw-bold'>Order Status: {mo?.status}</p>
                                 <img className='w-100 h-100 rounded' src={mo?.pdimg} alt="" />
                             </div>
                             <div>

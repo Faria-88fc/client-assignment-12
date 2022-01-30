@@ -26,8 +26,8 @@ const Footer = () => {
                 </div>
                 <p className="footerp">all rights reserve©2021</p>
             </div>
-            
-            
+
+
         </div>
     );
 };
